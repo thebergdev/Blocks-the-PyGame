@@ -1,0 +1,23 @@
+!!python/object:level.Level
+goal: !!python/object/apply:pygame.__rect_constructor
+- 750
+- 700
+- 50
+- 50
+id: 1
+payload: !!python/object/apply:pygame.__rect_constructor
+- 262
+- 712
+- 25
+- 25
+static:
+- !!python/object:level.Static
+  color: !!python/tuple
+  - 255
+  - 255
+  - 255
+  rect: !!python/object/apply:pygame.__rect_constructor
+  - 0
+  - 750
+  - 1000
+  - 250
