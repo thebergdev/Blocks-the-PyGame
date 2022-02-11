@@ -10,6 +10,7 @@ class Player:
       self.speed = speed
       self.payload = False
       self.goal = False
+      self.dead = False
 
   def load_payload(self):
     if self.payload:
