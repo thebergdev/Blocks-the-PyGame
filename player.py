@@ -34,3 +34,9 @@ class Player:
     self.goal = False
     self.rect.x = x
     self.rect.y = y
+
+  def kill(self):
+    if self.dead == False:
+      self.dead = True
+      print("Player " + self.id + " died")
+      return True
