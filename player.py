@@ -16,10 +16,11 @@ class Player:
       return False
     else:
       self.payload = True
+      print("Payload True")
       return True
     
 
-  def enterGoal(self):
+  def enter_goal(self):
     if self.payload:
       self.goal = True
     else:
