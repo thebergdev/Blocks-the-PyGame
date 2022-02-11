@@ -1,7 +1,16 @@
 def play(player, delta_time):
+    # Left/Right movement
     player.rect.x += (delta_time * player.speed * player.action[1]) / 100
+    
+    # Level limit
     if player.rect.left < 0: player.rect.left = 0
     elif player.rect.right > WIDTH: player.rect.right = WIDTH
+
+    # Payload check
+    if player.rect.colliderect(level.payload): player.load_payload()
+
+    # Goal check
+    if player.rect.colliderect(level.goal): player.enter_goal()
 
 # Simple pygame program
 
@@ -39,7 +48,8 @@ with open(LEVEL + ".yml", "r") as lvl_file:
     level = yaml.load(lvl_file, Loader=Loader)
 
 # Players
-player1 = Player(1, (255, 0, 0), pygame.Rect(500, 750-50, 50, 50), PLAYER_SPEED)
+players = []
+players.append(Player(1, (255, 0, 0), pygame.Rect(500, 750-50, 50, 50), PLAYER_SPEED))
 
 # Run until the user asks to quit
 running = True
@@ -49,7 +59,7 @@ while running:
     if delta_time > 1000:
         last_timestamp = datetime.now()
         # Resets player input
-        player1.action = [0, 0]
+        players[0].action = [0, 0]
 
         # Did the user click the window close button?
         for event in pygame.event.get():
@@ -59,21 +69,26 @@ while running:
         # Checking pressed keys
         keys = pygame.key.get_pressed()
         if keys[pygame.K_UP]:
-            player1.action[0] = 1
+            players[0].action[0] = 1
             #print("UP pressed")
         if keys[pygame.K_LEFT] and keys[pygame.K_RIGHT]:
-            player1.action[1] = 0
+            players[0].action[1] = 0
             #print("RIGHT and LEFT pressed")
         elif keys[pygame.K_LEFT]:
-            player1.action[1] = -1
+            players[0].action[1] = -1
             #print("LEFT pressed")
         elif keys[pygame.K_RIGHT]:
-            player1.action[1] = 1
+            players[0].action[1] = 1
             #print("RIGHT pressed")
 
         
         # Players play
-        play(player1, delta_time)
+        live_players = filter(lambda p: p.goal == False and p.dead == False, players)
+        #if len(list(live_players)) < 1:
+        #    print("GAME OVER")
+        #    running = False
+        for player in live_players:
+            play(player, delta_time)
 
         # Fill the background with white
         screen.fill((0, 0, 0))
@@ -91,7 +106,8 @@ while running:
             pygame.draw.rect(screen, static.color, static.rect)
 
         # Draw players
-        pygame.draw.rect(screen, player1.color, player1.rect)
+        for player in players:
+            pygame.draw.rect(screen, player.color, player.rect)
 
         # Flip the display
         pygame.display.flip()
