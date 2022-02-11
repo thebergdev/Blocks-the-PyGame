@@ -1,0 +1,12 @@
+height: 1000
+width: 1000
+level: lvl1
+player-speed: 0.02
+goal-color: !!python/tuple
+- 0
+- 255
+- 0
+payload-color: !!python/tuple
+- 255
+- 255
+- 0
