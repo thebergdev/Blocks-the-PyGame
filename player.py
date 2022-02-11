@@ -23,6 +23,8 @@ class Player:
   def enter_goal(self):
     if self.payload:
       self.goal = True
+      print("Goal True")
+      return True
     else:
       return False
   
