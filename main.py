@@ -83,10 +83,12 @@ while running:
 
         
         # Players play
-        live_players = filter(lambda p: p.goal == False and p.dead == False, players)
-        #if len(list(live_players)) < 1:
-        #    print("GAME OVER")
-        #    running = False
+        live_players = list(filter(lambda p: p.goal == False and p.dead == False, players))
+
+        if len(live_players) < 1:
+            print("GAME OVER")
+            running = False
+            
         for player in live_players:
             play(player, delta_time)
 
@@ -106,9 +108,9 @@ while running:
             pygame.draw.rect(screen, static.color, static.rect)
 
         # Draw players
-        for player in players:
+        for player in live_players:
             pygame.draw.rect(screen, player.color, player.rect)
-
+        
         # Flip the display
         pygame.display.flip()
 
