@@ -1,0 +1,42 @@
+!!python/object:level.Level
+goal: !!python/object:my_object.My_object
+  color: &id001 !!python/tuple
+  - 0
+  - 0
+  - 255
+  friction: 1
+  rect: !!python/object/apply:pygame.__rect_constructor
+  - 750
+  - 700
+  - 50
+  - 50
+  solid: false
+  visible: true
+  visual: null
+id: 2
+objects:
+- !!python/object:my_object.My_object
+  color: !!python/tuple
+  - 255
+  - 255
+  - 255
+  friction: 1
+  rect: !!python/object/apply:pygame.__rect_constructor
+  - 0
+  - 750
+  - 1000
+  - 250
+  solid: true
+  visible: true
+  visual: null
+payload: !!python/object:my_object.My_object
+  color: *id001
+  friction: 1
+  rect: !!python/object/apply:pygame.__rect_constructor
+  - 262
+  - 712
+  - 25
+  - 25
+  solid: false
+  visible: true
+  visual: null

@@ -6,15 +6,16 @@ try:
 except ImportError:
     from yaml import Loader, Dumper
 
-payload = pygame.Rect(250+25/2, 750-25-25/2, 25, 25)
-goal = pygame.Rect(750, 750-50, 50, 50)
-static = []
+id = 2
+payload = My_object(pygame.Rect(250+25/2, 750-25-25/2, 25, 25), (0, 0, 255), solid=False)
+goal = My_object(pygame.Rect(750, 750-50, 50, 50), (0, 0, 255), solid=False)
+objects = []
 
-ground = Static(pygame.Rect(0, 750, 1000, 250), (255, 255, 255))
+ground = My_object(pygame.Rect(0, 750, 1000, 250), (255, 255, 255))
 
-static.append(ground)
+objects.append(ground)
 
-lvl1 = Level(1, payload, goal, static)
+lvl = Level(id, payload, goal, objects)
 
-with open("lvl1.yml", "w+") as lvl_file:
-    cfg = yaml.dump(lvl1, lvl_file)
+with open("lvl" + str(id) + ".yml", "w+") as lvl_file:
+    cfg = yaml.dump(lvl, lvl_file)

@@ -1,7 +1,7 @@
 import numpy as np
 
 class My_object:
-  def __init__(self, rect, color, visual, solid=True, visible=True, friction=1):
+  def __init__(self, rect, color, visual=None, solid=True, visible=True, friction=1):
     self.rect = rect
     self.color = color
     self.solid = solid
@@ -15,7 +15,7 @@ class My_object:
       self.visual.draw(self)
 
 class My_object_dynamic(My_object):
-  def __init__(self, rect, color, visual, solid, visible, friction, PE, density=1):
+  def __init__(self, rect, color, visual, solid, visible, friction, PE=None, density=1):
     My_object.__init__(self, rect, color, visual, solid, visible, friction)
     self.density = density
     self.velocity = np.array([0, 0])
